@@ -6,7 +6,10 @@
 ## grep
 ### grep sql blcok
 
-> $ cat test.sql 
+```
+ $ cat test.sql 
+```
+
 ```
 DROP TABLE IF EXISTS `ad`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -31,8 +34,11 @@ CREATE TABLE `ad` (
 
 ```
 
-> # grep sql block
-> $ grepblock.sh -b '()' -s 'CREATE TABLE `ad`' -f test.sql 
+```
+# grep sql block
+$ grepblock.sh -b '()' -s 'CREATE TABLE `ad`' -f test.sql 
+```
+
 ```
 CREATE TABLE `ad` (
   `id` int(11) NOT NULL AUTO_INCREMENT ,
@@ -56,7 +62,10 @@ CREATE TABLE `ad` (
 
 ### grep nginx blcok
 
-> $ cat server.conf 
+```
+$ cat server.conf 
+```
+
 ```
 
 upstream tomcat {
@@ -80,8 +89,11 @@ server
 }
 ```
 
-> # grep nginx location / block
-> $ grepblock.sh -b '{}' -s 'location \/ {' -f server.conf 
+```
+# grep nginx location / block
+$ grepblock.sh -b '{}' -s 'location \/ {' -f server.conf 
+```
+
 ```
 	location / {
 	    proxy_next_upstream     http_500 http_502 http_503 http_504 error timeout invalid_header;
@@ -94,10 +106,12 @@ server
 ```
 
 ## add
-> # add string
-> $ grepblock.sh -a 'jingminglang' -b '()' -s 'CREATE TABLE `ad`' -f test.sql 
+```
+# add string
+$ grepblock.sh -a 'jingminglang' -b '()' -s 'CREATE TABLE `ad`' -f test.sql 
 
-> # add file text
-> $ grepblock.sh -a 'f.txt' -b '()' -s 'CREATE TABLE `ad`' -f test.sql 
+# add file text
+$ grepblock.sh -a 'f.txt' -b '()' -s 'CREATE TABLE `ad`' -f test.sql 
+```
 
 ## modify
