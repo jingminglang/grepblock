@@ -29,7 +29,7 @@ CREATE TABLE `ad` (
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 # grep sql block
-jimila@CDYJY-JINGML:dir$ grepblock.sh '()' 'CREATE TABLE `ad`' test.sql 
+jimila@CDYJY-JINGML:dir$ grepblock.sh -b '()' -s 'CREATE TABLE `ad`' -f test.sql 
 
 CREATE TABLE `ad` (
   `id` int(11) NOT NULL AUTO_INCREMENT ,
@@ -74,7 +74,7 @@ server
 }
 
 grep nginx location / block
-jimila@CDYJY-JINGML:nginx$ grepblock.sh '{}' 'location \/ {' server.conf 
+jimila@CDYJY-JINGML:nginx$ grepblock.sh -b '{}' -s 'location \/ {' -f server.conf 
 
 	location / {
 	    proxy_next_upstream     http_500 http_502 http_503 http_504 error timeout invalid_header;
