@@ -3,17 +3,30 @@
 
 
 # () {} [] ...
-
 block=""
 str=""
 file=""
+# string or filename
 add=""
+
+function is_file() {
+    [ -f "$1" ]
+}
+
+function encode() {
+   cat $1 | sed ":a;N;s/\n/\\\n/g;ta"   | sed "s/'/\\\x27/g" 
+
+}
 
 while getopts :a:b:s:f: name
 do
     case $name in
 	a)
 	    add=$OPTARG
+	    if $(is_file $add)
+	    then 
+		add=`encode $add`
+	    fi
 	    ;;
 	b)
 	    block=$OPTARG
@@ -29,6 +42,7 @@ do
     esac
 done
 
+
 if [ -z $add ]
 then
     s="sed  -n  '/"$str"/ {:c;N;H;s/[^"$block"]//g;:a;s/"$block"//g;ta;/^$/s/$/$/;tb;s/.*//g;x;bc;:b;g;s/^\n\+//g;p;s/.*//g;h}' "$file
@@ -37,3 +51,4 @@ else
     s="sed  '/"$str"/ {:c;N;H;s/[^"$block"]//g;:a;s/"$block"//g;ta;/^$/s/$/$/;tb;s/.*//g;x;bc;:b;g;s/^\n\+//g;s/\(.*\)/\1\n"$add"\n/g}' "$file
     eval $s
 fi
+
