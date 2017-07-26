@@ -3,9 +3,10 @@
 
 # Exmpale:
 
-## grep sql blcok
+## grep
+### grep sql blcok
 ```
-jimila@CDYJY-JINGML:dir$ cat test.sql 
+$ cat test.sql 
 
 DROP TABLE IF EXISTS `ad`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -29,7 +30,8 @@ CREATE TABLE `ad` (
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 # grep sql block
-jimila@CDYJY-JINGML:dir$ grepblock.sh -b '()' -s 'CREATE TABLE `ad`' -f test.sql 
+
+$ grepblock.sh -b '()' -s 'CREATE TABLE `ad`' -f test.sql 
 
 CREATE TABLE `ad` (
   `id` int(11) NOT NULL AUTO_INCREMENT ,
@@ -50,9 +52,10 @@ CREATE TABLE `ad` (
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 ```
-## grep nginx blcok
+### grep nginx blcok
 ```
-jimila@CDYJY-JINGML:nginx$ cat server.conf 
+$ cat server.conf 
+
 upstream tomcat {
     server 127.0.0.1:1601  weight=10 max_fails=2 fail_timeout=30s;
 }
@@ -73,8 +76,8 @@ server
     }
 }
 
-grep nginx location / block
-jimila@CDYJY-JINGML:nginx$ grepblock.sh -b '{}' -s 'location \/ {' -f server.conf 
+# grep nginx location / block
+$ grepblock.sh -b '{}' -s 'location \/ {' -f server.conf 
 
 	location / {
 	    proxy_next_upstream     http_500 http_502 http_503 http_504 error timeout invalid_header;
@@ -86,4 +89,13 @@ jimila@CDYJY-JINGML:nginx$ grepblock.sh -b '{}' -s 'location \/ {' -f server.con
 
 ```
 
-...
+## add
+```
+# add string
+$ grepblock.sh -a 'jingminglang' -b '()' -s 'CREATE TABLE `ad`' -f test.sql 
+
+# add file text
+$ grepblock.sh -a 'f.txt' -b '()' -s 'CREATE TABLE `ad`' -f test.sql 
+```
+
+## modify
