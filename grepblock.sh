@@ -44,7 +44,7 @@ done
 
 if [ -z $add ]
 then
-    s="sed  -n  '/"$str"/ {:c;N;H;s/[^"$block"]//g;:a;s/"$block"//g;ta;/^$/s/$/$/;tb;s/.*//g;x;bc;:b;g;s/^\n\+//g;p;s/.*//g;h}' "$file
+    s="sed  -n  '/"$str"/ {:c;N;H;s/[^"$block"]//g;:a;s/"$block"//g;ta;/^$/s/$/$/;tb;s/.*//g;x;bc;:b;g;s/^\n\+//g;p}' "$file
     eval $s
 else
     s="sed  '/"$str"/ {:c;N;H;s/[^"$block"]//g;:a;s/"$block"//g;ta;/^$/s/$/$/;tb;s/.*//g;x;bc;:b;g;s/^\n\+//g;s/\(.*\)/\1\n"$add"\n/g}' "$file
