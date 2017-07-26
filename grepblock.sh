@@ -2,6 +2,8 @@
 
 
 
+IFS=''
+
 # () {} [] ...
 block=""
 str=""
@@ -42,7 +44,7 @@ do
 done
 
 
-if [ -z $add ]
+if [ -z "$add" ]
 then
     s="sed  -n  '/"$str"/ {:c;N;H;s/[^"$block"]//g;:a;s/"$block"//g;ta;/^$/s/$/$/;tb;s/.*//g;x;bc;:b;g;s/^\n\+//g;p}' "$file
     eval $s
