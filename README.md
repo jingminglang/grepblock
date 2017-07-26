@@ -5,9 +5,9 @@
 
 ## grep
 ### grep sql blcok
-```
-$ cat test.sql 
 
+> $ cat test.sql 
+```
 DROP TABLE IF EXISTS `ad`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -29,10 +29,11 @@ CREATE TABLE `ad` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
-# grep sql block
+```
 
-$ grepblock.sh -b '()' -s 'CREATE TABLE `ad`' -f test.sql 
-
+> # grep sql block
+> $ grepblock.sh -b '()' -s 'CREATE TABLE `ad`' -f test.sql 
+```
 CREATE TABLE `ad` (
   `id` int(11) NOT NULL AUTO_INCREMENT ,
   `ad_name` varchar(100) NOT NULL,
@@ -52,9 +53,11 @@ CREATE TABLE `ad` (
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 ```
+
 ### grep nginx blcok
+
+> $ cat server.conf 
 ```
-$ cat server.conf 
 
 upstream tomcat {
     server 127.0.0.1:1601  weight=10 max_fails=2 fail_timeout=30s;
@@ -75,10 +78,11 @@ server
 	deny all;
     }
 }
+```
 
-# grep nginx location / block
-$ grepblock.sh -b '{}' -s 'location \/ {' -f server.conf 
-
+> # grep nginx location / block
+> $ grepblock.sh -b '{}' -s 'location \/ {' -f server.conf 
+```
 	location / {
 	    proxy_next_upstream     http_500 http_502 http_503 http_504 error timeout invalid_header;
 	    proxy_set_header        Host  $host;
@@ -90,12 +94,10 @@ $ grepblock.sh -b '{}' -s 'location \/ {' -f server.conf
 ```
 
 ## add
-```
-# add string
-$ grepblock.sh -a 'jingminglang' -b '()' -s 'CREATE TABLE `ad`' -f test.sql 
+> # add string
+> $ grepblock.sh -a 'jingminglang' -b '()' -s 'CREATE TABLE `ad`' -f test.sql 
 
-# add file text
-$ grepblock.sh -a 'f.txt' -b '()' -s 'CREATE TABLE `ad`' -f test.sql 
-```
+> # add file text
+> $ grepblock.sh -a 'f.txt' -b '()' -s 'CREATE TABLE `ad`' -f test.sql 
 
 ## modify
