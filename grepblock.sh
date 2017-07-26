@@ -14,8 +14,7 @@ function is_file() {
 }
 
 function encode() {
-   cat $1 | sed ":a;N;s/\n/\\\n/g;ta"   | sed "s/'/\\\x27/g" 
-
+   cat $1 | sed ":a;N;s/\n/\\\n/g;ta"   | sed -e "s/'/\\\x27/g"  -e "s#/#\\\/#g"
 }
 
 while getopts :a:b:s:f: name
